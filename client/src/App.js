@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Card from './Card';
 
 class App extends Component {
   constructor(props) {
@@ -9,19 +10,19 @@ class App extends Component {
     this.state = {
       data: null
     }
-    this.callBackendAPI= this.callBackendAPI.bind(this);
+    this.callBackendAPI = this.callBackendAPI.bind(this);
   }
 
   componentDidMount() {
     this.callBackendAPI()
       .then(res => {
-        this.setState({ data: res.express });
+        this.setState({ data: res });
       })
       .catch(err => console.log(err));
   }
 
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch('list/getList');
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -32,24 +33,29 @@ class App extends Component {
 
 
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          <p>{this.state.data}</p>
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-
+        <div class="gallery" id="gallery">
+          <div class="mb-3 pics animation all 2">
+            <Card></Card> 
+          </div>
+          <div class="mb-3 pics animation all 2">
+            <Card></Card>
+          </div>
+          <div class="mb-3 pics animation all 2">
+            <Card></Card>
+          </div>
+          <div class="mb-3 pics animation all 2">
+            <Card></Card>
+          </div>
+          <div class="mb-3 pics animation all 2">
+            <Card></Card>
+          </div>
+          <div class="mb-3 pics animation all 2">
+            <Card></Card>
+          </div>
+        </div>
       </div>
     );
   }
