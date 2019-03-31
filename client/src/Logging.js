@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 class Logging extends React.Component {
@@ -26,7 +26,7 @@ class Logging extends React.Component {
     }
   
     callBackendAPI_forLogging = async (username, password) => {
-      const response = await fetch('/login', {
+      const response = await fetch('/login/authenticate', {
         method: "post",
         headers: {
           'Accept': 'application/json',
@@ -52,39 +52,39 @@ class Logging extends React.Component {
       }
       return (
         <div className="App" >
-          <div class="text-center">
+          <div className="text-center">
             {this.state.token != null
-              ? <a href="" class="btn btn-default btn-rounded mb-4" onClick={() => { this.setState({ token: null }) }}>Logout</a>
-              : <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm">Login</a>
+              ? <a href="" className="btn btn-default btn-rounded mb-4" onClick={() => { this.setState({ token: null }) }}>Logout</a>
+              : <a href="" className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm">Login</a>
             }
           </div>
   
-          <div class="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header text-center">
-                  <h4 class="modal-title w-100 font-weight-bold">To-Do list Login</h4>
-                  <button type="button" id="closeModelBtn_1" class="close_1" data-dismiss="modal" aria-label="Close" style={buttonhidden}>
+          <div className="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header text-center">
+                  <h4 className="modal-title w-100 font-weight-bold">To-Do list Login</h4>
+                  <button type="button" id="closeModelBtn_1" className="close_1" data-dismiss="modal" aria-label="Close" style={buttonhidden}>
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body mx-3">
-                  <div class="md-form mb-5">
-                    <i class="fas fa-user prefix grey-text"></i>
-                    <input type="text" id="username" class="form-control validate" placeholder="Enter User Name" />
-                    <label data-error="wrong" data-success="right" for="form3">User Name</label>
+                <div className="modal-body mx-3">
+                  <div className="md-form mb-5">
+                    <i className="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="username" className="form-control validate" placeholder="Enter User Name" />
+                    <label data-error="wrong" data-success="right" htmlFor="form3">User Name</label>
                   </div>
   
-                  <div class="md-form mb-4">
-                    <i class="fas fa-envelope prefix grey-text"></i>
-                    <input type="email" id="password" class="form-control validate" placeholder="Enter Password" />
+                  <div className="md-form mb-4">
+                    <i className="fas fa-envelope prefix grey-text"></i>
+                    <input type="email" id="password" className="form-control validate" placeholder="Enter Password" />
                     <label data-error="wrong" data-success="right" for="form2">Password</label>
                   </div>
   
                 </div>
   
-                <div class="modal-footer d-flex justify-content-center">
-                  <button class="btn btn-indigo" onClick={this.loginButton}>Login <i class="fas fa-paper-plane-o ml-1"></i></button>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button className="btn btn-indigo" onClick={this.loginButton}>Login <i className="fas fa-paper-plane-o ml-1"></i></button>
                 </div>
               </div>
             </div>

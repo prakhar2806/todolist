@@ -22,12 +22,23 @@ class App extends Component {
     this.callBackendAPI()
       .then(res => {
         this.setState({ data: res });
+        console.log("res", res);
       })
       .catch(err => console.log(err));
   }
 
   callBackendAPI = async () => {
-    const response = await fetch('list/getList');
+    var bearer = 'Bearer '+ this.state.token;
+
+    const response = await fetch('list/getList',{
+      method: 'GET',
+      withCredentials: true,
+      credentials: 'include',
+      headers: {
+          'authorization': bearer,
+          // 'X-FP-API-KEY': 'iphone',
+          'Content-Type': 'application/json'}
+      });
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -43,9 +54,8 @@ class App extends Component {
     this.setState({
       token: dataFromLogging
     });
-    console.log("this.state", this.state.loggingData);
+    console.log("this.state", this.state.token);
   }
-
 
   render() {
 

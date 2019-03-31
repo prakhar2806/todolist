@@ -13,7 +13,7 @@ let middleware = require('./middleware');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/list', list);
+
 
 app.use((req, res, next) => {
     next();
@@ -67,6 +67,7 @@ class HandlerGenerator {
 }
 
 function main() {
+
     let app = express(); // Export app for other routes to use
     let handlers = new HandlerGenerator();
     // const port = process.env.PORT || 8000;
@@ -75,14 +76,19 @@ function main() {
     }));
     app.use(bodyParser.json());
     // Routes & Handlers
-    app.post('/login', handlers.login);
+
+    // app.post('/login', handlers.login);
+    
+    app.use('/login', list);
+
     app.get('/', middleware.checkToken, handlers.index);
+    app.use('/list', middleware.checkToken, list);
     // app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 
     mongoConnect((client) => {
         app.listen(port, () => console.log(`Listening on port ${port}`));
     })
-    
+
 }
 
 main();
