@@ -51,7 +51,7 @@ class List {
             .collection('todolist')
             .deleteOne({ _id: new mongoDb.ObjectId(itemId) })
             .then(result => {
-                console.log('Deleted');
+                return result;
             })
             .catch(err => {
                 console.log(err);

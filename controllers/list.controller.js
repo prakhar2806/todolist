@@ -17,7 +17,7 @@ exports.update = function (req, res) {
     const description = req.body.description;
     const list = new List(title, description, new ObjectId(listId));
     list.save().then(result => {
-        res.send("update success");
+        res.send(result);
     }).catch(err => {
         console.log("error in update", err);
     })
@@ -38,7 +38,8 @@ exports.create = function (req, res) {
 exports.deleteNote = function (req, res) {
     const id = req.body.id;
     List.deleteById(id).then(result => {
-        res.send("delete success");
+        res.send(result);
+        console.log("delete Success")
     }).catch(err => {
         console.log("error in deleteNote", err);
     })

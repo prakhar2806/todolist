@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
+import React, { Component, PureComponent } from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import UpdateNote from './UpdateNote';
 
-class Cards extends Component {
+class Cards extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -10,20 +11,24 @@ class Cards extends Component {
             data: null
         }
         this.deleteNote = this.deleteNote.bind(this);
-        this.callBackendAPI = this.callBackendAPI.bind(this);
+        this.callBackendAPI_delete = this.callBackendAPI_delete.bind(this);
+        this.updateHandler = this.updateHandler.bind(this);
     }
 
     deleteNote(id) {
-        this.callBackendAPI(id)
+
+        this.callBackendAPI_delete(id)
             .then(res => {
-                // alert("Note Deleted")
+                console.log(res);
+                alert("Note Deleted");
+                this.props.action();
             })
             .catch(err => console.log(err));
     }
 
-    callBackendAPI = async (id) => {
+    callBackendAPI_delete = async (id) => {
 
-        var bearer = 'Bearer ' ; //token
+        var bearer = 'Bearer ' + this.props.token; //token
         const response = await fetch('/list/delete', {
             method: "post",
             headers: {
@@ -45,18 +50,22 @@ class Cards extends Component {
         return body;
     };
 
+    updateHandler() {
+        this.props.action();
+    }
+
 
     render() {
         return (
             <Card bg="info" text="white" style={{ width: "30%", float: "left", margin: "1.5%" }}>
-                <Card.Header>Header</Card.Header>
                 <Card.Body>
                     <Card.Title>{this.props.value.title}</Card.Title>
                     <Card.Text>
                         {this.props.value.description}
                     </Card.Text>
-                    <Button variant="light" style={{ margin: "5px" }}>Update</Button>
-                    <Button variant="light" style={{ margin: "5px" }} >Delete</Button>
+                    <Card.Text>{this.props.value._id}</Card.Text>
+                    <UpdateNote noteId={this.props.value._id} value={this.props.token} style={{ float: "left" }} action={this.updateHandler}></UpdateNote>
+                    <Button variant="outline-primary" style={{ margin: "5px" }} onClick={(e) => this.deleteNote(this.props.value._id)}>Delete</Button>
                 </Card.Body>
             </Card>
         );

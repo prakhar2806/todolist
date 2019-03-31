@@ -12,6 +12,7 @@ class Lists extends Component {
             token: null
         }
         this.callBackendAPI = this.callBackendAPI.bind(this);
+        this.cardsHandler = this.cardsHandler.bind(this);
     }
 
     componentDidMount() {
@@ -19,7 +20,9 @@ class Lists extends Component {
         this.callBackendAPI()
             .then(res => {
                 this.setState({ data: res });
+                this.setState({ token: this.props.value });
                 console.log("lists", res);
+                console.log("token", this.state.token);
             })
             .catch(err => console.log(err));
     }
@@ -45,11 +48,15 @@ class Lists extends Component {
         return body;
     };
 
+    cardsHandler() {
+        this.componentDidMount()
+    }
+
     render() {
 
-        let itemLists = this.state.data != null ? this.state.data.map(element => {
+        let itemLists = this.state.data != null && this.state.token != null ? this.state.data.map(element => {
             return (
-                <Cards key={element._id} value={element} ></Cards>
+                <Cards key={element._id} id={element._id} value={element} token={this.state.token} action={this.cardsHandler}></Cards>
             )
         }) : ""
 
