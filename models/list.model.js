@@ -2,9 +2,10 @@ const getDb = require('../util/database').getDb;
 const mongoDb = require('mongodb');
 
 class List {
-    constructor(title, date) {
+    constructor(title, description, _id) {
         this.title = title,
-            this.time = date
+            this.description = description,
+            this._id = _id
     }
 
     static fetchAll() {
@@ -20,6 +21,41 @@ class List {
                 console.log(err);
             });
     }
+
+    save() {
+        const db = getDb();
+        let dbOp;
+        if (this._id) {
+            // Update the product
+            let id = new mongoDb.ObjectId(this._id);
+            console.log("id", id);
+            dbOp = db
+                .collection('todolist')
+                .updateOne({ _id: id }, { $set: this });
+        } else {
+            dbOp = db.collection('todolist').insertOne(this);
+        }
+        return dbOp
+            .then(result => {
+                console.log(result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    static deleteById(itemId) {
+        const db = getDb();
+        return db
+          .collection('todolist')
+          .deleteOne({ _id: new mongoDb.ObjectId(itemId) })
+          .then(result => {
+            console.log('Deleted');
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
 
 }
 
