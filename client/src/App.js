@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Card from './Card';
+import Card from './Cards';
 import Logging from './Logging'
 import Lists from './Lists'
+import AddNewNote from './AddNewNote'
 
 
 
@@ -19,8 +20,6 @@ class App extends Component {
   }
 
   loggingHandler(dataFromLogging) {
-    // log our state before and after we updated it
-    // console.log('%cPrevious Parent State: ' + JSON.stringify(this.state), "color:orange");
     console.log("dataFromLogging", dataFromLogging);
     this.setState({
       token: dataFromLogging
@@ -37,13 +36,14 @@ class App extends Component {
     }
 
     let todolistItems = this.state.token != null ? <Lists value={this.state.token}></Lists> : <h2>Please Login to continue</h2>
-
+    let newNote = this.state.token != null ? <AddNewNote value={this.state.token}></AddNewNote> : ""
     return (
       <div className="App">
         <div class="header" id="myHeader" style={headerStyle}>
           <h2>To-do List</h2>
           <Logging action={this.loggingHandler} />
         </div>
+        {newNote}
         {todolistItems}
       </div>
     );

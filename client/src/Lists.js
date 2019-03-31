@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Card from './Card';
-
-
+import Cards from './Cards';
+import './App.css';
+import CardColumns from 'react-bootstrap/Card'
 
 class Lists extends Component {
     constructor(props) {
@@ -47,37 +47,18 @@ class Lists extends Component {
 
     render() {
 
-        const headerStyle = {
-            padding: '10px 16px',
-            background: '#054cbf',
-            color: '#f1f1f1'
-        }
+        let itemLists = this.state.data != null ? this.state.data.map(element => {
+            return (
+                <Cards key={element._id} value={element} ></Cards>
+            )
+        }) : ""
 
         return (
-            <div className="App">
-
-                <div class="gallery" id="gallery">
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                    <div class="mb-3 pics animation all 2">
-                        <Card></Card>
-                    </div>
-                </div>
-
-            </div>
+            <>
+                <CardColumns>
+                    {itemLists}
+                </CardColumns>
+            </>
         );
     }
 }
