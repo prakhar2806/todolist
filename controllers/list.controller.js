@@ -28,7 +28,8 @@ exports.create = function (req, res) {
     const description = req.body.description;
     const list = new List(title, description);
     list.save().then(result => {
-        res.send("create success");
+        res.send(result);
+        console.log("create success");
     }).catch(err => {
         console.log("error in update", err);
     })

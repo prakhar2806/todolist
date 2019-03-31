@@ -17,15 +17,16 @@ class AddNewNote extends React.Component {
 
         this.callBackendAPI_forNoteAdd(title, desc)
             .then(res => {
-                console.log("Note Added", res); 
+                console.log("Note Added", res);
                 document.getElementById("closeModelBtn_2").click();
+                alert("Note Added Successfully.Please refresh to update !");
             })
             .catch(err => console.log("Incorrect credentials. Please try again.", err));
     }
 
     callBackendAPI_forNoteAdd = async (title, desc) => {
 
-        var bearer = 'Bearer ' +this.props.value;
+        var bearer = 'Bearer ' + this.props.value;
         const response = await fetch('/list/create', {
             method: "post",
             withCredentials: true,

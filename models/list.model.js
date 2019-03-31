@@ -38,6 +38,7 @@ class List {
         return dbOp
             .then(result => {
                 console.log(result);
+                return result;
             })
             .catch(err => {
                 console.log(err);
@@ -47,15 +48,15 @@ class List {
     static deleteById(itemId) {
         const db = getDb();
         return db
-          .collection('todolist')
-          .deleteOne({ _id: new mongoDb.ObjectId(itemId) })
-          .then(result => {
-            console.log('Deleted');
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
+            .collection('todolist')
+            .deleteOne({ _id: new mongoDb.ObjectId(itemId) })
+            .then(result => {
+                console.log('Deleted');
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
 
 }
 
