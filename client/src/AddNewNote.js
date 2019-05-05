@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class AddNewNote extends React.Component {
     constructor(props) {
@@ -14,17 +15,22 @@ class AddNewNote extends React.Component {
     saveNote() {
         let title = document.getElementById("title").value;
         let desc = document.getElementById("description").value;
+        let email = this.props.email;
+        console.log(email);
 
-        this.callBackendAPI_forNoteAdd(title, desc)
+        this.callBackendAPI_forNoteAdd(title, desc, email)
             .then(res => {
                 console.log("Note Added", res);
+                //dispatch 
+                let _id = res;
+                this.props.saveNote(_id, title, desc, email);
                 document.getElementById("closeModelBtn_2").click();
-                alert("Note Added Successfully.Please refresh to update !");
+                // alert("Note Added Successfully.Please refresh to update !");
             })
             .catch(err => console.log("Incorrect credentials. Please try again.", err));
     }
 
-    callBackendAPI_forNoteAdd = async (title, desc) => {
+    callBackendAPI_forNoteAdd = async (title, desc, email) => {
 
         var bearer = 'Bearer ' + this.props.value;
         const response = await fetch('/list/create', {
@@ -39,7 +45,8 @@ class AddNewNote extends React.Component {
             //make sure to serialize your JSON body
             body: JSON.stringify({
                 title: title,
-                description: desc
+                description: desc,
+                email: email
             })
         });
         const body = await response.json();
@@ -58,7 +65,7 @@ class AddNewNote extends React.Component {
             <div className="App" >
                 <div className="text-center">
 
-                    <a href="" className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm_1" style={{width:"40%",margin:"10px"}}>Add New Note</a>
+                    <a className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm_1" style={{ width: "40%", margin: "10px" }}>Add New Note</a>
 
                 </div>
 
@@ -96,4 +103,18 @@ class AddNewNote extends React.Component {
     }
 }
 
-export default AddNewNote;
+const mapStateToProps = (state) => {
+    return {
+        username: state.username,
+        email: state.email
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveNote: (_id, title, desc, email) => dispatch({ type: "SAVE_NOTE", value: { _id: _id, title: title, description: desc, email: email } })
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddNewNote);

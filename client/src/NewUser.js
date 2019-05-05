@@ -37,7 +37,7 @@ class NewUser extends React.Component {
             body: JSON.stringify({
                 username: Username,
                 password: Password,
-                emailid: Emailid
+                email: Emailid
             })
         });
         const body = await response.json();

@@ -25,15 +25,15 @@ app.get('/express_backend', (req, res) => {
 
 class HandlerGenerator {
     login(req, res) {
-        let username = req.body.username;
+        let email = req.body.email;
         let password = req.body.password;
-        // For the given username fetch user from DB
-        let mockedUsername = 'admin';
+        // For the given email fetch user from DB
+        let mockedemail = 'admin@gmail.com';
         let mockedPassword = 'password';
 
-        if (username && password) {
-            if (username === mockedUsername && password === mockedPassword) {
-                let token = jwt.sign({ username: username },
+        if (email && password) {
+            if (email === mockedemail && password === mockedPassword) {
+                let token = jwt.sign({ email: email },
                     config.secret,
                     {
                         expiresIn: '24h' // expires in 24 hours
@@ -48,7 +48,7 @@ class HandlerGenerator {
             } else {
                 res.send(403).json({
                     success: false,
-                    message: 'Incorrect username or password'
+                    message: 'Incorrect email or password'
                 });
             }
         } else {

@@ -2,10 +2,10 @@ const getDb = require('../util/database').getDb;
 const mongoDb = require('mongodb');
 
 class User {
-    constructor(username, password, emailid) {
+    constructor(username, password, email) {
         this.username = username,
             this.password = password,
-            this.emailid = emailid
+            this.email = email
     }
 
     static fetchAll() {

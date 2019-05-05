@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 
 class Logging extends React.Component {
   constructor(props) {
@@ -13,11 +13,13 @@ class Logging extends React.Component {
   }
 
   loginButton() {
-    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
+    console.log(email);
 
-    this.callBackendAPI_forLogging(username, password)
+    this.callBackendAPI_forLogging(email, password)
       .then(res => {
+        this.props.saveLoggedInDetails(email,password);
         this.setState({ token: res.token });
         this.props.action(this.state.token);
         document.getElementById("closeModelBtn_1").click();
@@ -25,7 +27,7 @@ class Logging extends React.Component {
       .catch(err => alert("Incorrect credentials. Please try again."));
   }
 
-  callBackendAPI_forLogging = async (username, password) => {
+  callBackendAPI_forLogging = async (email, password) => {
     const response = await fetch('/login/authenticate', {
       method: "post",
       headers: {
@@ -34,7 +36,7 @@ class Logging extends React.Component {
       },
       //make sure to serialize your JSON body
       body: JSON.stringify({
-        username: username,
+        email: email,
         password: password
       })
     });
@@ -71,8 +73,8 @@ class Logging extends React.Component {
               <div className="modal-body mx-3">
                 <div className="md-form mb-5">
                   <i className="fas fa-user prefix grey-text"></i>
-                  <input type="text" id="username" className="form-control validate" placeholder="Enter User Name" required />
-                  <label data-error="wrong" data-success="right" htmlFor="form3">User Name</label>
+                  <input type="text" id="email" className="form-control validate" placeholder="Enter Email" required />
+                  <label data-error="wrong" data-success="right" htmlFor="form3">Email</label>
                 </div>
 
                 <div className="md-form mb-4">
@@ -94,4 +96,18 @@ class Logging extends React.Component {
   }
 }
 
-export default Logging;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+    email: state.email0
+  }
+}
+
+//for action dispatch
+const mapDispatchToProps = (dispatch) => {
+  return {
+    saveLoggedInDetails: (email,password) => dispatch({ type: "LOGGEDIN_USER" ,value:{email:email,password:password}})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Logging);

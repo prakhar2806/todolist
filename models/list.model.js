@@ -2,9 +2,10 @@ const getDb = require('../util/database').getDb;
 const mongoDb = require('mongodb');
 
 class List {
-    constructor(title, description, _id) {
+    constructor(title, description, email, _id) {
         this.title = title,
             this.description = description,
+            this.email = email,
             this._id = _id
     }
 
@@ -37,8 +38,9 @@ class List {
         }
         return dbOp
             .then(result => {
-                console.log(result);
-                return result;
+                let newResult = new mongoDb.ObjectId(result.ops[0]._id);
+                console.log("save",newResult);
+                return newResult;
             })
             .catch(err => {
                 console.log(err);

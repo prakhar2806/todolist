@@ -26,7 +26,8 @@ exports.update = function (req, res) {
 exports.create = function (req, res) {
     const title = req.body.title;
     const description = req.body.description;
-    const list = new List(title, description);
+    const email = req.body.email;
+    const list = new List(title, description,email);
     list.save().then(result => {
         res.send(result);
         console.log("create success");
