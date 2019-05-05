@@ -61,7 +61,7 @@ class Logging extends React.Component {
           }
         </div>
 
-        <div className="modal fade" id="modalSubscriptionForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div className="modal fade" id="modalSubscriptionForm" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header text-center">
@@ -80,7 +80,7 @@ class Logging extends React.Component {
                 <div className="md-form mb-4">
                   <i className="fas fa-envelope prefix grey-text"></i>
                   <input type="password" id="password" className="form-control validate" placeholder="Enter Password" required />
-                  <label data-error="wrong" data-success="right" for="form2">Password</label>
+                  <label data-error="wrong" data-success="right" htmlFor="form2">Password</label>
                 </div>
 
               </div>

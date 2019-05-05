@@ -62,7 +62,7 @@ class UpdateNote extends React.Component {
                     <a href="" className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm_2">Update</a>
                 </div>
 
-                <div className="modal fade" id="modalSubscriptionForm_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div className="modal fade" id="modalSubscriptionForm_2" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header text-center">
@@ -74,14 +74,14 @@ class UpdateNote extends React.Component {
                             <div className="modal-body mx-3">
                                 <div className="md-form mb-5">
                                     <i className="fas fa-user prefix grey-text"></i>
-                                    <label for="updatetitle" >Title</label>
+                                    <label htmlFor="updatetitle" >Title</label>
                                     <input type="text" id="updatetitle" className="form-control validate" placeholder="Enter Title" />
                                 </div>
 
-                                <div class="form-group md-form mb-4">
+                                <div className="form-group md-form mb-4">
                                     <i className="fas fa-envelope prefix grey-text"></i>
-                                    <label for="updatedescription" >Description</label>
-                                    <textarea class="form-control" id="updatedescription" rows="7" placeholder="Enter Description"></textarea>
+                                    <label htmlFor="updatedescription" >Description</label>
+                                    <textarea className="form-control" id="updatedescription" rows="7" placeholder="Enter Description"></textarea>
                                 </div>
                             </div>
 

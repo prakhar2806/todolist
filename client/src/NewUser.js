@@ -54,19 +54,19 @@ class NewUser extends React.Component {
 
                 <div className="md-form mb-5">
                     <i className="fas fa-user prefix grey-text"></i>
-                    <label for="username" >User Name</label>
+                    <label htmlFor="username" >User Name</label>
                     <input type="text" id="user_name" className="form-control validate" placeholder="Enter username" />
                 </div>
 
-                <div class="form-group md-form mb-4">
+                <div className="form-group md-form mb-4">
                     <i className="fas fa-envelope prefix grey-text"></i>
-                    <label for="emailid" >Emailid</label>
+                    <label htmlFor="emailid" >Emailid</label>
                     <input type="text" id="email_id" className="form-control validate" placeholder="Enter Emailid...abc@xyz.com" />
                 </div>
 
-                <div class="form-group md-form mb-4">
+                <div className="form-group md-form mb-4">
                     <i className="fas fa-envelope prefix grey-text"></i>
-                    <label for="password" >Password</label>
+                    <label htmlFor="password" >Password</label>
                     <input type="password" id="pass_word" className="form-control validate" placeholder="Enter Password" />
                 </div>
 

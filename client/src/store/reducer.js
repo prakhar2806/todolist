@@ -18,13 +18,11 @@ const reducer = (state = initialState, action) => {
                 // history: state.history.concat({ id: Math.random(), age: state.age + action.value })
             }
             // newState.age += action.value;
-            break;
         case "SAVE_NOTE":
             return {
                 ...state,
                 list: state.list.concat(action.value)
             }
-            break;
         case "SET_ALL_NOTES":
             return {
                 ...state,

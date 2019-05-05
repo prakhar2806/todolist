@@ -69,7 +69,7 @@ class AddNewNote extends React.Component {
 
                 </div>
 
-                <div className="modal fade" id="modalSubscriptionForm_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div className="modal fade" id="modalSubscriptionForm_1" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header text-center">
@@ -81,14 +81,14 @@ class AddNewNote extends React.Component {
                             <div className="modal-body mx-3">
                                 <div className="md-form mb-5">
                                     <i className="fas fa-user prefix grey-text"></i>
-                                    <label for="title" >Title</label>
+                                    <label htmlFor="title" >Title</label>
                                     <input type="text" id="title" className="form-control validate" placeholder="Enter Title" />
                                 </div>
 
-                                <div class="form-group md-form mb-4">
+                                <div className="form-group md-form mb-4">
                                     <i className="fas fa-envelope prefix grey-text"></i>
-                                    <label for="description" >Description</label>
-                                    <textarea class="form-control" id="description" rows="7" placeholder="Enter Description"></textarea>
+                                    <label htmlFor="description" >Description</label>
+                                    <textarea className="form-control" id="description" rows="7" placeholder="Enter Description"></textarea>
                                 </div>
                             </div>
 

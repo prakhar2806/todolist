@@ -22,7 +22,7 @@ class Lists extends Component {
             .then(res => {
                 // console.log("this.props.email", this.props.email);
                 let arr = res.filter(ele => {
-                    return ele.email == this.props.email;
+                    return ele.email === this.props.email;
                 })
                 this.props.setAllNotes(arr);
                 console.log(arr);
