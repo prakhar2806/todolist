@@ -63,11 +63,17 @@ class Cards extends PureComponent {
                     <Card.Text>
                         {this.props.value.description}
                     </Card.Text>
-                    <Card.Text>{this.props.value._id}</Card.Text>
-                    <UpdateNote noteId={this.props.value._id} value={this.props.token} style={{ float: "left" }} action={this.updateHandler}></UpdateNote>
+                    {/* <Card.Text>{this.props.value._id}</Card.Text> */}
+                    <UpdateNote
+                        cardObj={{ id: this.props.value._id, title: this.props.value.title, desc: this.props.value.description, email: this.props.value.email }}
+                        noteId={this.props.value._id}
+                        value={this.props.token}
+                        style={{ float: "left", display: 'inline-block' }}
+                        action={this.updateHandler}>
+                    </UpdateNote>
                     <Button variant="outline-primary" style={{ margin: "5px" }} onClick={(e) => this.deleteNote(this.props.value._id)}>Delete</Button>
                 </Card.Body>
-            </Card>
+            </Card >
         );
     }
 }

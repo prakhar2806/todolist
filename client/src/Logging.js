@@ -19,7 +19,7 @@ class Logging extends React.Component {
 
     this.callBackendAPI_forLogging(email, password)
       .then(res => {
-        this.props.saveLoggedInDetails(email,password);
+        this.props.saveLoggedInDetails(email, password);
         this.setState({ token: res.token });
         this.props.action(this.state.token);
         document.getElementById("closeModelBtn_1").click();
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => {
 //for action dispatch
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveLoggedInDetails: (email,password) => dispatch({ type: "LOGGEDIN_USER" ,value:{email:email,password:password}})
+    saveLoggedInDetails: (email, password) => dispatch({ type: "LOGGEDIN_USER", value: { email: email, password: password } })
   }
 }
 

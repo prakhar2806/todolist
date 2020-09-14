@@ -5,9 +5,6 @@ import Logging from './Logging';
 import Lists from './Lists';
 import AddNewNote from './AddNewNote';
 
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -20,11 +17,9 @@ class App extends Component {
   }
 
   loggingHandler(dataFromLogging) {
-    console.log("dataFromLogging", dataFromLogging);
     this.setState({
       token: dataFromLogging
     });
-    console.log("this.state", this.state.token);
   }
 
   render() {

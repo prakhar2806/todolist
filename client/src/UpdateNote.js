@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css'
 
 class UpdateNote extends React.Component {
     constructor(props) {
@@ -41,7 +42,8 @@ class UpdateNote extends React.Component {
             body: JSON.stringify({
                 title: title,
                 description: desc,
-                id: id
+                id: id,
+                email:this.props.cardObj.email
             })
         });
         const body = await response.json();
@@ -57,7 +59,7 @@ class UpdateNote extends React.Component {
             display: 'none'
         }
         return (
-            <div className="App" >
+            <div className="App" className='inlineBlock' >
                 <div className="text-center">
                     <a href="" className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm_2">Update</a>
                 </div>
@@ -75,13 +77,13 @@ class UpdateNote extends React.Component {
                                 <div className="md-form mb-5">
                                     <i className="fas fa-user prefix grey-text"></i>
                                     <label htmlFor="updatetitle" >Title</label>
-                                    <input type="text" id="updatetitle" className="form-control validate" placeholder="Enter Title" />
+                                    <input type="text" id="updatetitle" className="form-control validate" placeholder="Enter Title" defaultValue={this.props.cardObj.title} />
                                 </div>
 
                                 <div className="form-group md-form mb-4">
                                     <i className="fas fa-envelope prefix grey-text"></i>
                                     <label htmlFor="updatedescription" >Description</label>
-                                    <textarea className="form-control" id="updatedescription" rows="7" placeholder="Enter Description"></textarea>
+                                    <textarea className="form-control" id="updatedescription" rows="7" placeholder="Enter Description" defaultValue={this.props.cardObj.desc}></textarea>
                                 </div>
                             </div>
 

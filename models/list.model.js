@@ -38,9 +38,12 @@ class List {
         }
         return dbOp
             .then(result => {
-                let newResult = new mongoDb.ObjectId(result.ops[0]._id);
-                console.log("save",newResult);
-                return newResult;
+                if (result.ops) {
+                    let newResult = new mongoDb.ObjectId(result.ops[0]._id);
+                    return newResult;
+                } else {
+                    return result;
+                }
             })
             .catch(err => {
                 console.log(err);

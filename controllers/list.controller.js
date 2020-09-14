@@ -15,7 +15,8 @@ exports.update = function (req, res) {
     const listId = req.body.id;
     const title = req.body.title;
     const description = req.body.description;
-    const list = new List(title, description, new ObjectId(listId));
+    const email = req.body.email;
+    const list = new List(title, description,email, new ObjectId(listId));
     list.save().then(result => {
         res.send(result);
     }).catch(err => {

@@ -60,7 +60,7 @@ class Lists extends Component {
     }
 
     render() {
-//this.state.data
+        //this.state.data
         let itemLists = this.state.data != null && this.state.token != null ? this.props.list.map(element => {
             return (
                 <Cards key={element._id} id={element._id} value={element} token={this.state.token} action={this.cardsHandler}></Cards>

@@ -16,7 +16,6 @@ class AddNewNote extends React.Component {
         let title = document.getElementById("title").value;
         let desc = document.getElementById("description").value;
         let email = this.props.email;
-        console.log(email);
 
         this.callBackendAPI_forNoteAdd(title, desc, email)
             .then(res => {
@@ -64,9 +63,7 @@ class AddNewNote extends React.Component {
         return (
             <div className="App" >
                 <div className="text-center">
-
                     <a className="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalSubscriptionForm_1" style={{ width: "40%", margin: "10px" }}>Add New Note</a>
-
                 </div>
 
                 <div className="modal fade" id="modalSubscriptionForm_1" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
